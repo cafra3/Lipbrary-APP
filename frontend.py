@@ -1,5 +1,7 @@
-import backend
+from backend import Database
 from tkinter import *
+
+database=Database("book.db")
 
 window=Tk()
 
@@ -28,24 +30,24 @@ def get_selected_row(event):
 
 def view_command():
     list.delete(0,END)
-    for row in backend.view():
+    for row in database.view():
         list.insert(END,row)
 
 def search_command():
     list.delete(0, END)
-    for row in backend.search(title_val.get(),author_val.get(),year_val.get(),isbn_val.get()):
+    for row in database.search(title_val.get(),author_val.get(),year_val.get(),isbn_val.get()):
         list.insert(END,row)
 
 def add_command():
-    backend.insert(title_val.get(),author_val.get(),year_val.get(),isbn_val.get())
+    database.insert(title_val.get(),author_val.get(),year_val.get(),isbn_val.get())
     list.delete(0,END)
     list.insert(END,(title_val.get(),author_val.get(),year_val.get(),isbn_val.get()))
 
 def delete_command():
-    backend.delete(selected_tuple[0])
+    database.delete(selected_tuple[0])
 
 def update_command():
-    backend.update(selected_tuple[0],title_val.get(),author_val.get(),year_val.get(),isbn_val.get())
+    database.update(selected_tuple[0],title_val.get(),author_val.get(),year_val.get(),isbn_val.get())
     # print(selected_tuple[0],title_val.get(),author_val.get(),year_val.get(),isbn_val.get())
 
 #Title

@@ -33,9 +33,7 @@ class Database:
         return rows
 
     def __del__(self):
-        self.con.close(
-
-        )
+        self.conn.close()
 # connect()
 # insert('oceans','Ella',2013,3475)
 # delete(6)
